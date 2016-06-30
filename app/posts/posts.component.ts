@@ -18,13 +18,10 @@ import {PostsService} from './posts.service';
 })
 export class PostsComponent {
 
-	postService: PostsService;
 	posts: any[];
 
-	constructor() {
-		this.postService = new PostsService();
-
-		this.posts = this.postService.getPosts();
+	constructor(private _postsService: PostsService) {
+		this.posts = this._postsService.getPosts();
 	}
 
 }

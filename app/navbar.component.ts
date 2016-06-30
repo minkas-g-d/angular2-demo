@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router-deprecated';
 
 @Component({
 	selector: 'navbar',
@@ -7,5 +7,9 @@ import {ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 	directives: [ROUTER_DIRECTIVES]
 })
 export class NavbarComponent {
+
+	constructor(private _router: Router) {
+
+	}
 
 }

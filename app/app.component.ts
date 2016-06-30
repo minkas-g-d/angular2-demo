@@ -1,15 +1,22 @@
 import {Component} from '@angular/core';
 import {NavbarComponent} from './navbar.component';
 import {PostsService} from './posts/posts.service';
+import {RouteConfig, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 
+import {PostsComponent} from './posts/posts.component';
+import {HomeComponent} from './home.component';
 
+@RouteConfig([
+	{ path: '/', name: 'Home', component: HomeComponent },
+	{ path: '/posts', name: 'Posts', component: PostsComponent },
+	{ path: '/*other', name: 'Other', redirectTo: [ 'Home' ] }
+])
 @Component({
     selector: 'my-app',
     template: `
 		<navbar></navbar>
-		<h1>{{pageTitle}}</h1>
 		<div class="container">
-			The content will change here.
+			<router-outlet></router-outlet>
 
 			<div class="row">
 				<div class="col-md-6">
@@ -21,11 +28,10 @@ import {PostsService} from './posts/posts.service';
 			</div>
 		</div>
 	`,
-	directives: [NavbarComponent],
+	directives: [NavbarComponent, ROUTER_DIRECTIVES],
 	providers: [PostsService]
 })
 export class AppComponent {
-	pageTitle = 'Welcome to UP2 blog';
 	postService: PostsService;
 	posts: any[];
 
